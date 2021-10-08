@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.media.TimedMetaData;
@@ -34,6 +35,7 @@ import com.yqritc.scalablevideoview.ScaleManager;
 import com.yqritc.scalablevideoview.Size;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -307,7 +309,7 @@ public class ReactVideoView extends ScalableVideoView implements
                 }
             } else {
                 ZipResourceFile expansionFile= null;
-                AssetFileDescriptor fd= null;
+                AssetFileDescriptor fd = mThemedReactContext.getAssets().openFd(uriString);
                 if(mMainVer>0) {
                     try {
                         expansionFile = APKExpansionSupport.getAPKExpansionZipFile(mThemedReactContext, mMainVer, mPatchVer);
